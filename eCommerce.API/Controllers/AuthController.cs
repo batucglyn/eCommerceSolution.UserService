@@ -49,7 +49,7 @@ public class AuthController : ControllerBase
             return BadRequest("Invalid login data");
         }
 
-        AuthenticationResponse authenticationResponse = await _usersService.Login(loginRequest);
+        AuthenticationResponse? authenticationResponse = await _usersService.Login(loginRequest);
         if (authenticationResponse == null || authenticationResponse.Success == false)
         {
 

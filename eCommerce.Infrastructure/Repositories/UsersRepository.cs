@@ -40,6 +40,8 @@ internal class UsersRepository : IUsersRepository
         }
     }
 
+   
+
     public async Task<ApplicationUser?> GetUserByEmailAndPassword(string? email, string? password)
     {
         //SQL query to select a user by Email and Password
@@ -49,6 +51,12 @@ internal class UsersRepository : IUsersRepository
         ApplicationUser? user = await _dbContext.DbConnection.QueryFirstOrDefaultAsync<ApplicationUser>(query, parameters);
 
         return user;
+    }
+    public async Task<bool> ExistsByEmailAsync(string email)
+    {
+        const string sql = @"SELECT 1 FROM public.""Users"" WHERE ""Email""=@Email LIMIT 1;";
+        var exists = await _dbContext.DbConnection.ExecuteScalarAsync<int?>(sql, new { Email = email });
+        return exists is not null; // varsa true, yoksa false
     }
 }
 

@@ -49,7 +49,16 @@ public class UsersService : IUsersService
         //    PersonName = registerRequest.PersonName,
 
         //};
-       ApplicationUser user= _mapper.Map<ApplicationUser>(registerRequest);
+
+
+        var emailExists=  await _userRepository.ExistsByEmailAsync(registerRequest.Email);
+        if (emailExists)
+        {
+
+            throw new Exception("This email is already registered"); 
+        }
+
+        ApplicationUser user= _mapper.Map<ApplicationUser>(registerRequest);
 
     
 
