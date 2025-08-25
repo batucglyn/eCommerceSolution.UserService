@@ -22,6 +22,7 @@ internal class UsersRepository : IUsersRepository
 
     public async Task<ApplicationUser?> AddUser(ApplicationUser user)
     {
+       
         //Generate a new unique user ID for the user
         user.UserID = Guid.NewGuid();
 

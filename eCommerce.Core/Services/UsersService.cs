@@ -51,6 +51,8 @@ public class UsersService : IUsersService
         //};
        ApplicationUser user= _mapper.Map<ApplicationUser>(registerRequest);
 
+    
+
         ApplicationUser? registeredUser = await _userRepository.AddUser(user);
 
         if (registeredUser == null)
