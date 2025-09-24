@@ -14,6 +14,6 @@ public interface IUsersRepository
 
     Task<ApplicationUser?> GetUserByEmailAndPassword(string? email, string? password);
     Task<bool> ExistsByEmailAsync(string email);
-
+    Task<ApplicationUser?> GetUserByUserID(Guid? userID);
 }
 

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace eCommerce.Core.ServiceContracts;
 
-    public interface IUsersService
-    {
+public interface IUsersService
+{
 
     Task<AuthenticationResponse?> Login(LoginRequest loginRequest);
     Task<AuthenticationResponse?> Register(RegisterRequest registerRequest);
-
-    }
+    Task<UserDTO> GetUserByUserID(Guid userID);
+}
 

@@ -58,5 +58,13 @@ internal class UsersRepository : IUsersRepository
         var exists = await _dbContext.DbConnection.ExecuteScalarAsync<int?>(sql, new { Email = email });
         return exists is not null; // varsa true, yoksa false
     }
+    public async Task<ApplicationUser?> GetUserByUserID(Guid? userID)
+    {
+        var query = "SELECT * FROM public.\"Users\" WHERE \"UserID\" = @UserID";
+        var parameters = new { UserID = userID };
+
+        using var connection = _dbContext.DbConnection;
+        return await connection.QueryFirstOrDefaultAsync<ApplicationUser>(query, parameters);
+    }
 }
 
